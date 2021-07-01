@@ -84,30 +84,32 @@ p{
   height: 300px;
   object-fit: cover;
 }
-.links{
+.links-container{
   font-family: Montserrat;
   text-align: center;
 }
-.links > a{
-  margin: 100px;
+.links{
+  display: inline-block;
+  position: relative;
   padding: 20px;
   border-radius: 10px;
+  background-image: linear-gradient(to right, #ff6f00 , #9800c2);
   z-index: 1;
-  background: linear-gradient(to right, #ff6f00 , #9800c2);
 }
-.links > a::before{
+.links::before{
   content: "";
   position: absolute;
-  top: -50px;
-  left: 0px;
-  width: 100%;
-  height: 10px;
-  background: #5bc41d;
-  opacity: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  background-color: #27c225;
+  opacity: 0;
   transition: opacity 0.3s;
-  z-index: 1000;
+  z-index: -1;
 }
-.links > a:hover::before{
+.links:hover::before{
   opacity: 1;
 }
 .sosSquadScreenshots{
