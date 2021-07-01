@@ -1,0 +1,148 @@
+hr{
+  margin: 75px 15%;
+}
+a{
+  font-weight: bold;
+  color: white;
+  text-decoration: initial;
+}
+a:hover{
+  text-shadow: 0px 0px 5px #ffffff;
+}
+body {
+  margin: 0px;
+  background-color: #f2f2f2;
+}
+h1 {
+  margin-left:5%;
+  margin-right:5%;
+  text-align: center;
+  font-family: Prime;
+}
+h2{
+  margin-left:5%;
+  margin-right:5%;
+  text-align: center;
+  font-family: Prime;
+}
+p{
+  margin-left:5%;
+  margin-right:5%;
+  text-align: center;
+  font-family: Exo2;
+}
+::selection{
+  color: #ff6f00;
+  text-shadow: 0px 0px 6px #9800c2;
+}
+.headbar{
+  color: white;
+  background-image: linear-gradient(to right, #ff6f00 , #9800c2);
+  padding: 20px 40px;
+  padding-right: 80px;
+  box-shadow: 0px 0px 30px #000000;
+  margin-bottom: 100px;
+}
+.headbar-list{
+  font-family: Montserrat;
+  display: inline;
+  float: right;
+  font-size: 17px;
+  padding-left: 15px;
+}
+.headbar-logo{
+  display: inline;
+  font-family: Republiko;
+  font-size: 24px;
+}
+.portfolio-text{
+  color: black;
+  text-align: center;
+  padding: 10px 20px;
+}
+.portfolio-item{
+  font-family: Montserrat;
+  display: inline-block;
+  width: 400px;
+  background-color: white;
+  transition: box-shadow .5s;
+  margin-bottom: 25px;
+  box-shadow: 2px 2px black, -2px -2px black;
+  margin: 10px;
+}
+.portfolio-item:hover{
+  box-shadow: 2px 2px 20px rgba(0,0,0,0.15), -2px -2px 20px rgba(0,0,0,0.15);
+}
+.portfolio-container{
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-top: 80px;
+  text-align: center;
+}
+.portfolio-item > img{
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+.links{
+  font-family: Montserrat;
+  text-align: center;
+}
+.links > a{
+  margin: 100px;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1;
+  background: linear-gradient(to right, #ff6f00 , #9800c2);
+}
+.links > a::before{
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 0px;
+  width: 100%;
+  height: 10px;
+  background: #5bc41d;
+  opacity: 1;
+  transition: opacity 0.3s;
+  z-index: 1000;
+}
+.links > a:hover::before{
+  opacity: 1;
+}
+.sosSquadScreenshots{
+  margin:10%;
+  text-align: center;
+}
+.sosSquadScreenshots > img{
+  display: inline-block;
+  width: 300px;
+  height: 600px;
+  padding: 10px;
+}
+.bmbScreenshots{
+  margin:8%;
+  text-align: center;
+}
+.bmbScreenshots > img{
+  display: inline-block;
+  width: 600px;
+  height: 300px;
+  padding: 8px;
+}
+@font-face {
+  font-family: Republiko;
+  src: url(fonts/Republiko.otf);
+}
+@font-face {
+  font-family: Exo2;
+  src: url(fonts/Exo2.ttf);
+}
+@font-face {
+  font-family: Prime;
+  src: url(fonts/Prime.otf);
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(fonts/Montserrat-Light.ttf);
+}
