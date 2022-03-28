@@ -25,6 +25,9 @@ h2{
   text-align: center;
   font-family: Prime;
 }
+p>a{
+  color:orange;
+}
 p{
   margin-left:5%;
   margin-right:5%;
@@ -55,6 +58,7 @@ p{
   font-family: Republiko;
   font-size: 24px;
 }
+
 .portfolio-text{
   color: black;
   text-align: center;
@@ -138,6 +142,34 @@ p{
   width: 600px;
   height: 300px;
   padding: 8px;
+}
+.dropdownItem{
+  font-family: Prime;
+  font-size: 21px;
+  font-weight: bold;
+  margin:15px 10%;
+  text-align: left;
+  padding: 10px;
+  width:80%;
+  display: inline-block;
+  border:none;
+  background-color:inherit;
+  border: 4px solid rgb(204, 204, 204);
+  border-top: none;
+  border-radius: 5px;
+}
+.dropdown-content{
+  margin-left:5%;
+  margin-right:5%;
+  text-align: right;
+  font-family: Exo2;
+  font-weight:normal;
+  font-size:17px;
+}
+.dropdownItem > img{
+  display:inline;
+  width: 15px;
+  float:right;
 }
 @font-face {
   font-family: Republiko;
