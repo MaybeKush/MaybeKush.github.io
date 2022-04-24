@@ -1,3 +1,8 @@
+:root{
+  --size-h1 : 35px;
+  --size-h2 : 25px;
+  --size-p : 15px;
+}
 hr{
   margin: 75px 15%;
 }
@@ -18,12 +23,14 @@ h1 {
   margin-right:5%;
   text-align: center;
   font-family: Prime;
+  font-size: var(--size-h1);
 }
 h2{
   margin-left:5%;
   margin-right:5%;
   text-align: center;
   font-family: Prime;
+  font-size: var(--size-h2)
 }
 p>a{
   color:orange;
@@ -33,6 +40,7 @@ p{
   margin-right:5%;
   text-align: center;
   font-family: Exo2;
+  font-size: font-size: var(--size-p);
 }
 ::selection{
   color: #ff6f00;
@@ -198,4 +206,9 @@ p{
 @font-face {
   font-family: Montserrat;
   src: url(fonts/Montserrat-Light.ttf);
+}
+@media(min-width: 1080px){
+  :root{
+    
+  }
 }
