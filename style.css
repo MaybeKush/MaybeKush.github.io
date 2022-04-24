@@ -1,7 +1,9 @@
 :root{
   --size-h1 : 35px;
-  --size-h2 : 25px;
+  --size-h2 : 20px;
   --size-p : 15px;
+  --bigPauseSize: 40px;
+  --smallPauseSize : 15px;
 }
 hr{
   margin: 75px 15%;
@@ -18,6 +20,12 @@ body {
   margin: 0px;
   background-color: #f2f2f2;
 }
+.bigPause{
+  height: var(--bigPauseSize);
+}
+.smallPause{
+  height: var(--smallPauseSize);
+}
 h1 {
   margin-left:5%;
   margin-right:5%;
@@ -30,7 +38,8 @@ h2{
   margin-right:5%;
   text-align: center;
   font-family: Prime;
-  font-size: var(--size-h2)
+  font-size: var(--size-h2);
+  line-height: 1.2em;
 }
 p>a{
   color:orange;
@@ -77,12 +86,17 @@ p{
 .portfolio-item{
   font-family: Montserrat;
   display: inline-block;
-  width: 400px;
+  width: 90%;
   background-color: white;
   transition: box-shadow .5s;
   margin-bottom: 25px;
   box-shadow: 2px 2px black, -2px -2px black;
   margin: 10px;
+}
+.portfolio-item > img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .portfolio-item:hover{
   box-shadow: 2px 2px 20px rgba(0,0,0,0.15), -2px -2px 20px rgba(0,0,0,0.15);
@@ -92,11 +106,6 @@ p{
   margin-right: 8%;
   margin-top: 80px;
   text-align: center;
-}
-.portfolio-item > img{
-  width: 400px;
-  height: 300px;
-  object-fit: cover;
 }
 .links-container{
   font-family: Montserrat;
@@ -140,25 +149,23 @@ p{
 }
 .sosSquadScreenshots > img{
   display: inline-block;
-  width: 300px;
-  height: 600px;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
 }
 .bmbScreenshots{
-  margin:8%;
+  margin:5%;
   text-align: center;
 }
 .bmbScreenshots > img{
   display: inline-block;
-  width: 600px;
-  height: 300px;
-  padding: 8px;
+  width: 100%;
+  height: 100%;
 }
 .dropdownItem{
   font-family: Prime;
   font-size: 21px;
   font-weight: bold;
-  margin:15px 10%;
+  margin:15px 5%;
   text-align: left;
   padding: 10px;
   width:80%;
@@ -213,8 +220,10 @@ p{
 @media only screen and (min-width: 1081px){
   :root{
     --size-h1 : 40px;
-    --size-h2 : 24px;
+    --size-h2 : 25px;
     --size-p : 15px;
+    --bigPauseSize : 150px;
+    --smallPauseSize : 30px;
   }
   .headbar{
     color: white;
@@ -234,5 +243,23 @@ p{
     font-size: 24px;
     width:50%;
     margin:auto;
+  }
+  .portfolio-item{
+    width: 400px;
+    margin-bottom: 25px;
+    margin: 10px;
+  }
+  .portfolio-item > img{
+    width: 400px;
+    height: 300px;
+  }
+  .bmbScreenshots > img{
+    width: 480px;
+  }
+  .sosSquadScreenshots > img{
+    width: 300px;
+  }
+  .dropdownItem{
+    margin:15px 9%;
   }
 }
