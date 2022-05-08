@@ -50,6 +50,10 @@ p{
   text-align: center;
   font-family: Exo2;
   font-size: var(--size-p);
+
+  transform-origin: top;
+  animation: splatUp 1s linear 0.2s, fade 0.4s ease-in;
+  animation-fill-mode: both;
 }
 ::selection{
   color: #ff6f00;
@@ -62,6 +66,9 @@ p{
   box-shadow: 0px 0px 30px #000000;
   margin-bottom: 100px;
   text-align: center;
+  animation-name: headbar;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
 }
 .headbar-list{
   font-family: Montserrat;
@@ -92,6 +99,10 @@ p{
   margin-bottom: 25px;
   box-shadow: 2px 2px black, -2px -2px black;
   margin: 10px;
+
+  transform-origin: bottom;
+  animation: splatDown 1s linear 0.2s, fade 0.4s ease-in;
+  animation-fill-mode: both;
 }
 .portfolio-item > img{
   width: 100%;
@@ -100,6 +111,7 @@ p{
 }
 .portfolio-item:hover{
   box-shadow: 2px 2px 20px rgba(0,0,0,0.15), -2px -2px 20px rgba(0,0,0,0.15);
+  transform: scale(1.1,1.1);
 }
 .portfolio-container{
   margin-left: 8%;
@@ -262,4 +274,30 @@ p{
   .dropdownItem{
     margin:15px 9%;
   }
+}
+@keyframes splatDown{
+  0%{transform: translate(0%, -150%);}
+  10%{transform: translate(0%, 0%);}
+  15%{transform: scale(2, 0.1);}
+  25%{transform: scale(2, 0.1);}
+  30%{transform: scale(0.7, 1.3);}
+  40%{transform: scale(0.7, 1.3);}
+  45%{transform: scale(1.1,0.9);}
+  55%{transform: scale(1.1,0.9);}
+  60%{transform: scale(1,1);}
+}
+@keyframes splatUp{
+  0%{transform: translate(0%, 150%);}
+  10%{transform: translate(0%, 0%);}
+  15%{transform: scale(2, 0.1);}
+  25%{transform: scale(2, 0.1);}
+  30%{transform: scale(0.7, 1.3);}
+  40%{transform: scale(0.7, 1.3);}
+  45%{transform: scale(1.1,0.9);}
+  55%{transform: scale(1.1,0.9);}
+  60%{transform: scale(1,1);}
+}
+@keyframes fade{
+  from{opacity:0;}
+  to{opacity:1;}
 }
