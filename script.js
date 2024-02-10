@@ -1,37 +1,29 @@
 const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      var object;
-      
-      if(entry.target.className == 'text-wrapper'){
-        object = entry.target.querySelector('p');
-        if (entry.isIntersecting)
-          object.classList.add('animation_textChunk');
-        else
-          object.classList.remove('animation_textChunk');
-      }
-      if(entry.target.className == 'mediumImage-wrapper'){
-        object = entry.target.querySelector('img');
-        if (entry.isIntersecting)
-            object.classList.add('animation_mediumImage');
-        else
-            object.classList.remove('animation_mediumImage');
-      }
-      if(entry.target.className == 'portfolioItems-wrapper'){
-        object = entry.target.querySelector('.portfolio-item');
+    
+  var root = getComputedStyle(document.querySelector(':root'));
+  
+  entries.forEach(entry => {
 
-        if (entry.isIntersecting)
-            object.classList.add('animation_mediumImage');
-        else
-            object.classList.remove('animation_mediumImage');
-      }
-      
+      var object;
+      let animationName = '';
+      object = entry.target;
+
+      if(object.className == 'animateSplatUp')
+        animationName = 'animation_splatUp';
+      if(object.className == 'animateSplatDown')
+        animationName = 'animation_splatDown';
+
+      object.style.setProperty('--animationTime', (Math.random()*0.3) + 0.1 + 's');
+
+      if (entry.isIntersecting)
+          object.classList.add(animationName);
+      else
+          object.classList.remove(animationName);
     });
   });
-  var observee = document.querySelectorAll('.text-wrapper');
-  observee.forEach((o) => { observer.observe(o); })
 
-  observee = document.querySelectorAll('.mediumImage-wrapper');
-  observee.forEach((o) => { observer.observe(o); })
+var observee = document.querySelectorAll('.animateSplatUp');
+observee.forEach((o) => { observer.observe(o); })
 
-  observee = document.querySelectorAll('.portfolioItems-wrapper');
-  observee.forEach((o) => { observer.observe(o); })
+observee = document.querySelectorAll('.animateSplatDown');
+observee.forEach((o) => { observer.observe(o); })
