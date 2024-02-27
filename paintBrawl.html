@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<title>Paint Brawl | MaybeKush</title>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scare=1">
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-72x72.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <div class = "headbar">
+	<div class = "headbar-logo"><a href = "index.html">MAYBE KUSH</a></div>
+  <div class = "headbar-list"><a href = "index.html">Home</a></div>
+  <div class = "headbar-list"><a href = "portfolio.html">Portfolio</a></div>
+  <div class = "headbar-list"><a href = "contact.html">Contact</a></div>
+  </div>
+
+  <h1>Paint Brawl</h1>
+  <hr>
+  <h2  class = "animateSplatDown">What is Paint Brawl, you ask?</h2>
+  
+  <div class="text-wrapper"><p class = "animateSplatUp">Paint Brawl is a game that I(alone) worked on for Brackeys
+    Game Jam 2024.1. Everything is made from scratch in Unity with the exceptions of Sounds. The game was made
+    in 7 days.
+
+    In this you spawn in a desolate room, you keep opening doors as you fight unexpected enemies with A LOT of variety
+    (atleast for 7 days of work). After completing each room, you earn some coins which you can spend on strengthening
+    yourself. It's a brutally hard game (atleast that's what I was aiming for), enemeis dodge your bullets, they walk
+    away from your bullet's trajectory and well, some of them are most unexpected in their attacks. The only thing
+    that can help you survive is your full attention and quick response to anything they throw at you.
+  </p></div>
+  
+  <hr>
+  <h2 class = "animateSplatDown">Technical Challenges</h2>
+  <div class="text-wrapper"><p class = "animateSplatUp"> These are some of the fun technical challenges I accomplished
+      <br><br>- <b>Writing clean/modular code</b> so that I can have as many monsters with the most complexity and keep it all 
+      organised and understable to human eye. This helped me a lot since I made 4 bosses and 1 mini boss in last few
+      hours before the jam ended. Clean code saved me SO much time when needed the most.
+      <br><br>- <b>Making boss run away from bullets </b> was very fun to make. So I calculate the trajectory of bullets
+      by having their positions and directions. Then I extend a line and calculate if the boss is on the left side or
+      right side of trajectory, which then gives me where to move. Then I simply get a perpendicular direction to player
+      and move to wherever the cumulative sum of all their trajectories and respective running direction points.
+      <br><br>- <b>Used almost all raw maths instead of Unity's functions </b> because the current me thinks it's fun.
+      <br><br>- <b>WebGL </b> was a pain but had to do it for the jam. Apparently a type of functions just don't work
+      and there's no documentation, no bug reports, no data of it on the whole internet. Just had to use another type
+      of asynchronous functions instead of default C# async functions (which make it all so neat).
+  </p></div>
+  <hr>
+  <h2 class = "animateSplatDown">Screenshots of the game</h2>
+
+  <div class = "bmbScreenshots mediumImage-wrapper">
+	<img src="images/PaintBrawlSS1.png" alt="BMB preview" class = "animateSplatDown">
+	<img src="images/PaintBrawlSS2.png" alt="BMB preview" class = "animateSplatDown">
+	<img src="images/PaintBrawlSS3.png" alt="BMB preview" class = "animateSplatDown">
+  </div>
+  <hr>
+    <h2 class = "animateSplatDown">Links</h2>
+  <div class="text-wrapper"><p class = "animateSplatUp">You can play it on your browser (keyboard only for now) :)</p></div>
+	<br><br>
+	<div class = "links-container">
+    <div class = "animateSplatUp">
+	  <a href = "https://maybekush.itch.io/brackeysgamejam" target="_blank"><div class = "links">Play!</div></a>
+	</div></div>
+  <hr>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
