@@ -1,42 +1,892 @@
 <!DOCTYPE html>
-<html>
-
-<title>Home | MaybeKush</title>
-
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scare=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Rivera — Game & Level Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-72x72.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  
+:root {
+  --ink: #111010;
+  --paper: #faf8f5;
+  --paper2: #f0ede7;
+  --orange: #e8620a;
+  --orange-light: #ff8533;
+  --orange-dim: rgba(232,98,10,0.12);
+  --teal: #0aada8;
+  --teal-light: #12cfc9;
+  --teal-dim: rgba(10,173,168,0.12);
+  --mid: #6a6560;
+  --border: rgba(17,16,16,0.1);
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(250,248,245,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--mid);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--orange); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  padding-top: 4rem;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 3.5rem 5rem 3rem;
+}
+.hero-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 2px;
+  background: var(--teal);
+}
+.hero-name {
+  font-family: var(--font-head);
+  font-size: clamp(5rem, 9vw, 8rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.hero-name .orange { color: var(--orange); }
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--mid);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.hero-desc {
+  font-size: 1rem;
+  color: var(--mid);
+  max-width: 42ch;
+  margin-bottom: 2.5rem;
+  line-height: 1.75;
+  font-weight: 300;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--orange);
+  color: #fff;
+  padding: 0.85rem 2rem;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 2px solid var(--teal);
+  color: var(--teal);
+  padding: 0.85rem 2rem;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-secondary:hover { background: var(--teal); color: #fff; }
+
+.hero-right {
+  background: var(--ink);
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 3.5rem 3rem;
+  gap: 2.5rem;
+  position: relative; overflow: hidden;
+}
+.hero-right::before {
+  content: 'DESIGN';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  font-family: var(--font-head);
+  font-size: 10rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.025);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.skill-block { }
+.skill-block-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.pill {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.8);
+  font-family: var(--font-body);
+}
+.pill.o { background: rgba(232,98,10,0.2); border-color: rgba(232,98,10,0.4); color: #ff9955; }
+.pill.t { background: rgba(10,173,168,0.2); border-color: rgba(10,173,168,0.4); color: #2ee8e2; }
+
+/* ── SECTION SHARED ── */
+section { padding: 5rem 3rem; }
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 2px;
+  background: var(--teal);
+}
+.section-heading {
+  font-family: var(--font-head);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 3.5rem;
+}
+.section-heading span { color: var(--orange); }
+
+/* ── PROJECT ENTRY ── */
+#professional { background: var(--paper); }
+#personal { background: var(--paper2); }
+
+.project-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+  align-items: stretch;
+}
+.project-entry:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+
+/* Left: text panel */
+.project-text-panel {
+  padding-right: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.project-num {
+  font-family: var(--font-head);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.project-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 0.6rem;
+}
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
+.tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border);
+  color: var(--mid);
+  background: transparent;
+}
+.tag.o { background: var(--orange-dim); border-color: rgba(232,98,10,0.3); color: var(--orange); }
+.tag.t { background: var(--teal-dim); border-color: rgba(10,173,168,0.3); color: var(--teal); }
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+/* Stats inline row */
+.stat-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.stat-item { }
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: var(--orange);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 500;
+}
+
+/* Highlights as a comma-separated inline line */
+.highlights-inline {
+  font-size: 0.78rem;
+  color: var(--mid);
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+.highlights-inline strong {
+  font-weight: 600;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-right: 0.4rem;
+}
+
+.project-links { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.25rem; }
+.link-btn {
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.45rem 1.1rem;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s;
+}
+.link-btn:hover { background: var(--ink); color: var(--paper); }
+.link-btn.primary { background: var(--orange); border-color: var(--orange); color: #fff; }
+.link-btn.primary:hover { background: var(--orange-light); border-color: var(--orange-light); }
+
+/* ── MEDIA GALLERY (right panel) ── */
+.project-images-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+/* Featured (first) image spans full width */
+.project-images-panel .media-item:first-child {
+  grid-column: 1 / -1;
+}
+
+.media-item {
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+  height: 120px;
+  cursor: pointer;
+  transition: height 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+/* Featured image a bit taller */
+.project-images-panel .media-item:first-child {
+  height: 150px;
+}
+
+/* On hover, expand that specific item */
+.media-item:hover {
+  height: 210px;
+  z-index: 2;
+}
+.project-images-panel .media-item:first-child:hover {
+  height: 230px;
+}
+
+.media-item iframe {
+  width: 100%; height: 100%;
+  border: none;
+  display: block;
+}
+.media-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.media-item:hover img { transform: scale(1.04); }
+.media-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.4rem;
+  color: rgba(255,255,255,0.3);
+}
+.media-placeholder svg { opacity: 0.35; width: 24px; height: 24px; }
+.media-placeholder span {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.media-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  padding: 1rem 0.6rem 0.4rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+.media-play-btn {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(232,98,10,0.9);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  transition: background 0.2s;
+}
+.media-play-btn svg { margin-left: 3px; width: 15px; height: 15px; }
+.media-item:hover .media-play-btn { background: var(--orange-light); }
+.media-item.video-embed { cursor: default; }
+
+/* ── ABOUT ── */
+#about {
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+.about-left { padding: 5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+.about-right {
+  border-left: 1px solid rgba(255,255,255,0.08);
+  padding: 5rem 3rem;
+  display: flex; flex-direction: column; gap: 3rem;
+}
+#about .section-label { color: var(--teal); }
+#about .section-label::before { background: var(--teal); }
+#about .section-heading { color: var(--paper); }
+#about .section-heading span { color: var(--orange); }
+.about-text {
+  font-size: 1rem;
+  color: rgba(250,248,245,0.6);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+.tool-group-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,248,245,0.3);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.tool-list { list-style: none; }
+.tool-list li {
+  font-size: 0.9rem;
+  color: rgba(250,248,245,0.75);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 0.6rem;
+  font-weight: 300;
+}
+.tool-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--paper);
+  display: grid; grid-template-columns: 1fr 1fr; padding: 0;
+}
+.contact-left { padding: 5rem 3rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+.contact-right { padding: 5rem 3rem; display: flex; flex-direction: column; gap: 1.25rem; justify-content: center; }
+.contact-card {
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none; color: inherit; display: block;
+}
+.contact-card:hover { border-color: var(--orange); background: var(--orange-dim); }
+.contact-card-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.contact-card-value {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.contact-card-value span { color: var(--orange); font-size: 1.4rem; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.footer-logo span { color: var(--orange); }
+.footer-copy { font-size: 0.75rem; color: rgba(250,248,245,0.3); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.3rem; }
+  section { padding: 3rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 3.5rem 1.5rem; }
+  .project-entry { grid-template-columns: 1fr; }
+  .project-text-panel { padding-right: 0; padding-bottom: 1.25rem; }
+  .project-images-panel { grid-template-columns: 1fr 1fr; }
+  #about, #contact { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+  .about-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; }
+  .contact-left { border-right: none; border-bottom: 1px solid var(--border); }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+}
+</style>
 </head>
-
 <body>
 
-  <div class = "headbar">
-	<div class = "headbar-logo"><a href = "index.html">MAYBE KUSH</a></div>
-  <div class = "headbar-list"><a href = "index.html">Home</a></div>
-  <div class = "headbar-list"><a href = "portfolio.html">Portfolio</a></div>
-  <div class = "headbar-list"><a href = "contact.html">Contact</a></div>
-  </div>
-  <div class = "smallPause"></div>
-  <h1>Who is me?</h1>
-  
-  <p class="animateSplatUp">
-    I'm a game developer, have been for like 4 years now. Have achieved pretty good skills in it. Now I want to use this skill
-     to the fullest of my abilities and take it to the next step. <br>
-    Mainly a programmer but I can handle almost all tasks of game development, just with lesser efficiency than mainly programming.</p>
-  </p>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Alex<span>.</span>Rivera</a>
+  <ul class="nav-links">
+    <li><a href="#professional">Professional</a></li>
+    <li><a href="#personal">Personal</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <div class = "bigPause"></div>
-  <h1 class = "animateSplatDown">Portfolio?</h1>
-  
-  <p class="animateSplatUp">
-    <a href="portfolio.html">Portfolio.</a>
-    </p>
-  <script src="script.js"></script>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Game &amp; Level Designer · Austin, TX</p>
+    <h1 class="hero-name"><span class="orange">Alex</span><br>Rivera</h1>
+    <p class="hero-title">Designing Worlds,<br>Not Just Levels</p>
+    <p class="hero-desc">4 years of experience shipping games played by millions — from horror blockouts to monetization systems. Multidisciplinary, collaborative, always building.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get in Touch →</a>
+      <a href="#professional" class="btn-secondary">See My Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="skill-block">
+      <p class="skill-block-label">Design Skills</p>
+      <div class="skill-pills">
+        <span class="pill o">Level Design</span>
+        <span class="pill o">Game Design</span>
+        <span class="pill o">Monetization</span>
+        <span class="pill t">UI/UX Design</span>
+        <span class="pill t">Encounter Design</span>
+        <span class="pill t">Narrative Design</span>
+        <span class="pill">Sound Design</span>
+        <span class="pill">Music Composition</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-block-label">Engines &amp; Tools</p>
+      <div class="skill-pills">
+        <span class="pill o">Unity (C#)</span>
+        <span class="pill o">Unreal 5</span>
+        <span class="pill o">Roblox Studio</span>
+        <span class="pill t">Figma</span>
+        <span class="pill t">Jira</span>
+        <span class="pill t">Perforce</span>
+        <span class="pill">Trenchbroom</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PROFESSIONAL PROJECTS
+══════════════════════════════════════ -->
+<section id="professional">
+  <p class="section-label reveal">Professional Projects</p>
+  <h2 class="section-heading reveal">Shipped &amp; Played<br>by <span>Millions</span></h2>
+
+  <!-- ── DREAD CAMP ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">01 / Professional</p>
+      <h3 class="project-title">Dread Camp</h3>
+      <div class="project-tags">
+        <span class="tag o">Co-op Horror</span>
+        <span class="tag">Roblox Studio</span>
+        <span class="tag">Lua</span>
+      </div>
+      <p class="project-desc">Designed player housing, monetization systems, the final boss fight, and scare events. Took level segments from blockout to polished release, and composed four original music tracks.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">7.9M</div><div class="stat-label">Players</div></div>
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Music Tracks</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Gameplay &amp; Puzzle Design · Level Design &amp; Scripting · Monetization · Music Composition</div>
+      <div class="project-links">
+        <a href="#" class="link-btn primary">Play Game ↗</a>
+        <a href="#" class="link-btn">Watch Trailer ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item video-embed">
+        <iframe src="https://www.youtube.com/embed/b0dMtPL2xPM?mute=1&rel=0&controls=1" allow="autoplay; encrypted-media" allowfullscreen title="Dread Camp gameplay trailer"></iframe>
+        <div class="media-label">Gameplay Trailer</div>
+      </div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Level Blockout</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Boss Fight</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Player Housing</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Scare Events</span></div></div>
+    </div>
+  </div>
+
+  <!-- ── ULTIMATE FOOTBALL SIMULATOR ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">02 / Professional</p>
+      <h3 class="project-title">Ultimate Football Simulator</h3>
+      <div class="project-tags">
+        <span class="tag o">Idle Game</span>
+        <span class="tag t">UI/UX Design</span>
+        <span class="tag">Roblox Studio</span>
+      </div>
+      <p class="project-desc">Spiritual successor to a studio idle hit with American football aesthetics. Designed core loop innovations, gacha progression, and UI wireframes. Ran playtesting sessions and tracked bugs in Jira.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">4.6M</div><div class="stat-label">Players</div></div>
+        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Core Systems</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Core Gameplay Loop · Gacha Progression · UI/UX Design · Playtesting Leadership</div>
+      <div class="project-links">
+        <a href="#" class="link-btn primary">Play Game ↗</a>
+        <a href="#" class="link-btn">Watch Trailer ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item video-embed">
+        <iframe src="https://www.youtube.com/embed/Zf_EbTX5OnA?mute=1&rel=0&controls=1" allow="autoplay; encrypted-media" allowfullscreen title="Ultimate Football Simulator trailer"></iframe>
+        <div class="media-label">Gameplay Trailer</div>
+      </div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>UI Wireframe · Shop</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Gacha System</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Main UI</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Gameplay Loop</span></div></div>
+    </div>
+  </div>
+
+  <!-- ── VANS WORLD ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">03 / Professional</p>
+      <h3 class="project-title">Vans World 2.0</h3>
+      <div class="project-tags">
+        <span class="tag o">Arcade Sports</span>
+        <span class="tag t">Modular Design</span>
+        <span class="tag">Roblox Studio</span>
+      </div>
+      <p class="project-desc">Blockouts for city-themed skateparks and downhill racing maps during the pitch stage. Built a modular funbox library of ramps and rail grinds used throughout production.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">125M</div><div class="stat-label">Players</div></div>
+        <div class="stat-item"><div class="stat-num">6+</div><div class="stat-label">Skatepark Designs</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Pre-production Blockouts · Modular Level Kit · Multi-city Theming · Downhill Race Maps</div>
+      <div class="project-links">
+        <a href="#" class="link-btn primary">Play Game ↗</a>
+        <a href="#" class="link-btn">Watch Trailer ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item video-embed">
+        <iframe src="https://www.youtube.com/embed/zm68L6GTBkc?mute=1&rel=0&controls=1" allow="autoplay; encrypted-media" allowfullscreen title="Vans World 2.0 trailer"></iframe>
+        <div class="media-label">Reveal Trailer</div>
+      </div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Blockout · Tokyo</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Modular Funbox Kit</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Downhill Race Map</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Final Skatepark</span></div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+     PERSONAL PROJECTS
+══════════════════════════════════════ -->
+<section id="personal">
+  <p class="section-label reveal">Personal Projects</p>
+  <h2 class="section-heading reveal">Built for the<br><span>Love of It</span></h2>
+
+  <!-- ── OCEAN BUDDIE ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">01 / Personal</p>
+      <h3 class="project-title">Ocean Buddie</h3>
+      <div class="project-tags">
+        <span class="tag o">Co-op Platformer</span>
+        <span class="tag t">Puzzle Design</span>
+        <span class="tag">Unity · C#</span>
+        <span class="tag">Team of 7</span>
+      </div>
+      <p class="project-desc">One player walks on land, the other swims in the ocean — unique asymmetric puzzle and platforming opportunities. Designed all four core puzzles and assisted with level layout.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Puzzles Designed</div></div>
+        <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Team Size</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Puzzle Design (all 4) · Level Layout &amp; Flow · Asymmetric Co-op Design</div>
+      <div class="project-links">
+        <a href="#" class="link-btn primary">Play on Itch.io ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Land Section</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Ocean Section</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Puzzle 2</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Co-op Moment</span></div></div>
+    </div>
+  </div>
+
+  <!-- ── THE FLAREWATCHER ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">02 / Personal</p>
+      <h3 class="project-title">The Flarewatcher</h3>
+      <div class="project-tags">
+        <span class="tag o">Top-Down Shooter</span>
+        <span class="tag t">Project Lead</span>
+        <span class="tag">Unreal 5</span>
+        <span class="tag">Team of 9</span>
+      </div>
+      <p class="project-desc">Served as project lead — shaped creative direction, core loop, narrative, and enemy AI design. Storyboarded cutscenes, animated them into video, wrote all dialogue, and composed the original score.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">Team Size</div></div>
+        <div class="stat-item"><div class="stat-num">Lead</div><div class="stat-label">Role</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Project Lead · Gameplay &amp; AI Design · Narrative &amp; Dialogue · Music Composition</div>
+      <div class="project-links">
+        <a href="#" class="link-btn primary">Play on Itch.io ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item video-embed">
+        <div class="media-placeholder">
+          <div class="media-play-btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+          <span style="margin-top:2.5rem;">Gameplay Video</span>
+        </div>
+        <div class="media-label">Gameplay Walkthrough</div>
+      </div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Storyboard · Intro</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Enemy AI</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Combat</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Cutscene · Ending</span></div></div>
+    </div>
+  </div>
+
+  <!-- ── QUAKE MAPPING ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">03 / Personal</p>
+      <h3 class="project-title">Quake Mapping</h3>
+      <div class="project-tags">
+        <span class="tag o">First-Person Shooter</span>
+        <span class="tag t">Level Design</span>
+        <span class="tag">Quake Engine</span>
+        <span class="tag">Trenchbroom</span>
+      </div>
+      <p class="project-desc">Personal maps built in Trenchbroom for the love of pure level craft. Full pipeline from blockout to polished release — enemy placement, scripted events, and custom texture work.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Maps Released</div></div>
+        <div class="stat-item"><div class="stat-num">Solo</div><div class="stat-label">Project</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Level Design (Blockout → Dress) · Encounter &amp; Enemy Placement · Scripting · Custom Textures</div>
+      <div class="project-links">
+        <a href="#" class="link-btn">View Maps ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Map 1 · Blockout</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Map 1 · Dressed</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Map 2 · Arena</span></div></div>
+      <div class="media-item"><div class="media-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Trenchbroom Editor</span></div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left">
+    <p class="section-label reveal">About Me</p>
+    <h2 class="section-heading reveal">Designer.<br>Builder.<br><span>Do-er.</span></h2>
+    <p class="about-text reveal">I'm Alex Rivera — a multidisciplinary game and level designer with 4 years of experience building games people actually play. Whether it's horror, idle, sports, or experimental indie, I bring the same obsessive attention to what makes a moment feel right.</p>
+    <p class="about-text reveal">I fill the gaps the project needs. Level design, UI/UX, sound, narrative — I've touched it all and I'm always hungry to learn more. Based in Austin, TX. Open to remote and on-site.</p>
+  </div>
+  <div class="about-right">
+    <div>
+      <p class="tool-group-label">Engines</p>
+      <ul class="tool-list">
+        <li><span class="tool-dot"></span>Unity (C#)</li>
+        <li><span class="tool-dot"></span>Unreal Engine 5 (Blueprints)</li>
+        <li><span class="tool-dot"></span>Roblox Studio (Lua)</li>
+        <li><span class="tool-dot"></span>Quake / Trenchbroom</li>
+      </ul>
+    </div>
+    <div>
+      <p class="tool-group-label">Production Tools</p>
+      <ul class="tool-list">
+        <li><span class="tool-dot"></span>Figma</li>
+        <li><span class="tool-dot"></span>Jira</li>
+        <li><span class="tool-dot"></span>Perforce</li>
+      </ul>
+    </div>
+    <div>
+      <p class="tool-group-label">Additional Skills</p>
+      <ul class="tool-list">
+        <li><span class="tool-dot"></span>Sound Design &amp; Music Composition</li>
+        <li><span class="tool-dot"></span>Storyboarding &amp; Animatics</li>
+        <li><span class="tool-dot"></span>Playtesting &amp; QA Leadership</li>
+        <li><span class="tool-dot"></span>Narrative Design &amp; Dialogue Writing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <p class="section-label reveal">Contact</p>
+    <h2 class="section-heading reveal">Let's Make<br><span>Something.</span></h2>
+    <p class="project-desc reveal" style="color:var(--mid);font-weight:300;max-width:36ch;line-height:1.75;">Have a project, a role, or just want to talk games? Reach out — I respond fast.</p>
+  </div>
+  <div class="contact-right">
+    <a href="mailto:alex.rivera@example.com" class="contact-card reveal">
+      <p class="contact-card-label">Email</p>
+      <p class="contact-card-value">alex.rivera@example.com <span>↗</span></p>
+    </a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-card reveal">
+      <p class="contact-card-label">LinkedIn</p>
+      <p class="contact-card-value">linkedin.com/in/alexrivera <span>↗</span></p>
+    </a>
+    <a href="https://itch.io" target="_blank" rel="noopener" class="contact-card reveal">
+      <p class="contact-card-label">Itch.io</p>
+      <p class="contact-card-value">alexrivera.itch.io <span>↗</span></p>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Alex<span>.</span>Rivera</span>
+  <span class="footer-copy">Game &amp; Level Designer · Austin, TX · 2026</span>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
