@@ -1,42 +1,987 @@
 <!DOCTYPE html>
-<html>
-
-<title>Home | MaybeKush</title>
-
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scare=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaybeKush - Game Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-72x72.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  
+:root {
+  --ink: #111010;
+  --paper: #faf8f5;
+  --paper2: #f0ede7;
+  --orange: #e8620a;
+  --neutral: #84b6a4;
+  --orange-light: #ff8533;
+  --orange-dim: rgba(232,98,10,0.12);
+  --teal: #0aada8;
+  --teal-light: #12cfc9;
+  --teal-dim: rgba(10,173,168,0.12);
+  --mid: #6a6560;
+  --border: rgba(17,16,16,0.1);
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(250,248,245,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--mid);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--orange); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  padding-top: 4rem;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 3.5rem 5rem 3rem;
+}
+.hero-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 2px;
+  background: var(--teal);
+}
+.hero-name {
+  font-family: var(--font-head);
+  font-size: clamp(5rem, 9vw, 8rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.hero-name .orange { color: var(--orange); }
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  color: var(--mid);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.hero-desc {
+  font-size: 1rem;
+  color: var(--mid);
+  max-width: 42ch;
+  margin-bottom: 2.5rem;
+  line-height: 1.75;
+  font-weight: 300;
+}
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--orange);
+  color: #fff;
+  padding: 0.85rem 2rem;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  border: 2px solid var(--teal);
+  color: var(--teal);
+  padding: 0.85rem 2rem;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-secondary:hover { background: var(--teal); color: #fff; }
+
+.hero-right {
+  background: var(--paper);
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 3.5rem 3rem;
+  gap: 2.5rem;
+  position: relative; overflow: hidden;
+}
+.hero-right::before { display: none; }
+.skill-block { }
+.skill-block-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.pill {
+  background: rgba(17,16,16,0.06);
+  border: 1px solid rgba(17,16,16,0.12);
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+.pill.o { background: rgba(232,98,10,0.18); border-color: rgba(232,98,10,0.35); color: var(--orange); }
+.pill.t { background: rgba(10,173,168,0.18); border-color: rgba(10,173,168,0.35); color: var(--teal); }
+
+/* ── SECTION SHARED ── */
+section { padding: 5rem 3rem; }
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px; height: 2px;
+  background: var(--teal);
+}
+.section-heading {
+  font-family: var(--font-head);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 3.5rem;
+}
+.section-heading span { color: var(--orange); }
+
+/* ── PROJECT ENTRY ── */
+#professional,
+#personal { background: var(--paper2); }
+
+.project-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 2.5rem;
+  padding: 2.5rem;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  align-items: stretch;
+}
+.project-entry:last-child { margin-bottom: 0; }
+
+/* Left: text panel */
+.project-text-panel {
+  padding-right: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.project-num {
+  font-family: var(--font-head);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.project-title {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 0.6rem;
+}
+.project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.75rem; }
+.tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border);
+  color: var(--mid);
+  background: transparent;
+}
+.tag.o { background: var(--orange-dim); border-color: rgba(232,98,10,0.3); color: var(--orange); }
+.tag.t { background: var(--teal-dim); border-color: rgba(10,173,168,0.3); color: var(--teal); }
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+/* Stats inline row */
+.stat-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.stat-item { }
+.stat-num {
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: var(--orange);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 500;
+}
+
+/* Highlights as a comma-separated inline line */
+.highlights-inline {
+  font-size: 0.78rem;
+  color: var(--mid);
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+.highlights-inline strong {
+  font-weight: 600;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-right: 0.4rem;
+}
+
+.project-links { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.25rem; }
+.link-btn {
+  font-family: var(--font-head);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.45rem 1.1rem;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  transition: background 0.15s, color 0.15s;
+}
+.link-btn:hover { background: var(--ink); color: var(--paper); }
+.link-btn.primary { background: var(--orange); border-color: var(--orange); color: #fff; }
+.link-btn.primary:hover { background: var(--orange-light); border-color: var(--orange-light); }
+
+/* ── MEDIA GALLERY (right panel) ── */
+.project-images-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+/* Featured (first) image spans full width */
+.project-images-panel .media-item:first-child {
+  grid-column: 1 / -1;
+}
+
+/* 4-column layout for portrait rows */
+.project-images-panel.images-row-4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.project-images-panel.images-row-4 .media-item {
+  height: 320px;
+}
+.project-images-panel.images-row-4 .media-item:first-child {
+  height: 150px;
+}
+
+.media-item {
+  position: relative;
+  background: var(--ink);
+  overflow: hidden;
+  height: 160px;
+  cursor: crosshair;
+}
+/* Featured image a bit taller */
+.project-images-panel .media-item:first-child {
+  height: 200px;
+}
+
+.media-item iframe { width: 100%; height: 100%; border: none; display: block; }
+.media-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── IMAGE OVERLAY (centered on hovered image + subtle cursor parallax) ── */
+#img-overlay {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  /* center the overlay on the computed point */
+  transform: translate(-50%, -50%);
+  /* hidden by default — visibility keeps it measurable */
+  opacity: 0;
+  visibility: hidden;
+  /* opacity + visibility fade, left/top for smooth parallax drift */
+  transition: opacity 0.15s ease, visibility 0.15s ease, left 0.1s ease, top 0.1s ease;
+  will-change: left, top, opacity;
+}
+#img-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+/* Size to the image's natural dimensions, capped to viewport */
+#img-overlay img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(520px, 52vw);
+  max-height: 68vh;
+  border-radius: 10px;
+  box-shadow:
+    0 28px 64px rgba(0,0,0,0.58),
+    0 0 0 5px rgba(250,248,245,0.97),
+    0 0 0 6px rgba(17,16,16,0.09);
+}
+.media-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.4rem;
+  color: rgba(255,255,255,0.3);
+}
+.media-placeholder svg { opacity: 0.35; width: 24px; height: 24px; }
+.media-placeholder span {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.media-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  padding: 1rem 0.6rem 0.4rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  font-weight: 500;
+}
+.media-play-btn {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(232,98,10,0.9);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  transition: background 0.2s;
+}
+.media-play-btn svg { margin-left: 3px; width: 15px; height: 15px; }
+.media-item:hover .media-play-btn { background: var(--orange-light); }
+.media-item.video-embed { cursor: default; }
+
+/* ── ABOUT ── */
+#about {
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+.about-left { padding: 5rem 3rem; display: flex; flex-direction: column; justify-content: center; }
+.about-right {
+  border-left: 1px solid rgba(255,255,255,0.08);
+  padding: 5rem 3rem;
+  display: flex; flex-direction: column; gap: 3rem;
+}
+#about .section-label { color: var(--teal); }
+#about .section-label::before { background: var(--teal); }
+#about .section-heading { color: var(--paper); }
+#about .section-heading span { color: var(--orange); }
+.about-text {
+  font-size: 1rem;
+  color: rgba(250,248,245,0.6);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+.tool-group-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,248,245,0.3);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.tool-list { list-style: none; }
+.tool-list li {
+  font-size: 0.9rem;
+  color: rgba(250,248,245,0.75);
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 0.6rem;
+  font-weight: 300;
+}
+.tool-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--paper);
+  display: grid; grid-template-columns: 1fr 1fr; padding: 0;
+}
+.contact-left { padding: 5rem 3rem; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+.contact-right { padding: 5rem 3rem; display: flex; flex-direction: column; gap: 1.25rem; justify-content: center; }
+.contact-card {
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none; color: inherit; display: block;
+}
+.contact-card:hover { border-color: var(--orange); background: var(--orange-dim); }
+.contact-card-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.contact-card-value {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.contact-card-value span { color: var(--orange); font-size: 1.4rem; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo {
+  font-family: var(--font-head);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.footer-logo span { color: var(--orange); }
+.footer-copy { font-size: 0.75rem; color: rgba(250,248,245,0.3); }
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.3rem; }
+  section { padding: 3rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 3.5rem 1.5rem; }
+  .project-entry { grid-template-columns: 1fr; }
+  .project-text-panel { padding-right: 0; padding-bottom: 1.25rem; }
+  .project-images-panel { grid-template-columns: 1fr 1fr; }
+  #about, #contact { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+  .about-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; }
+  .contact-left { border-right: none; border-bottom: 1px solid var(--border); }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+}
+</style>
 </head>
-
 <body>
 
-  <div class = "headbar">
-	<div class = "headbar-logo"><a href = "index.html">MAYBE KUSH</a></div>
-  <div class = "headbar-list"><a href = "index.html">Home</a></div>
-  <div class = "headbar-list"><a href = "portfolio.html">Portfolio</a></div>
-  <div class = "headbar-list"><a href = "contact.html">Contact</a></div>
-  </div>
-  <div class = "smallPause"></div>
-  <h1>Who is me?</h1>
-  
-  <p class="animateSplatUp">
-    I'm a game developer, have been for like 4 years now. Have achieved pretty good skills in it. Now I want to use this skill
-     to the fullest of my abilities and take it to the next step. <br>
-    Mainly a programmer but I can handle almost all tasks of game development, just with lesser efficiency than mainly programming.</p>
-  </p>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Maybe<span>.</span>Kush</a>
+  <ul class="nav-links">
+    <li><a href="#professional">Professional</a></li>
+    <li><a href="#personal">Personal</a></li>
+    <li><a href="pixel-art.html">Pixel Art</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <div class = "bigPause"></div>
-  <h1 class = "animateSplatDown">Portfolio?</h1>
-  
-  <p class="animateSplatUp">
-    <a href="portfolio.html">Portfolio.</a>
-    </p>
-  <script src="script.js"></script>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Game Developer &amp; Pixel Artist · India</p>
+    <h1 class="hero-name"><span class="orange">Maybe</span><br>Kush</h1>
+    <p class="hero-title">Crafting Experiences</p>
+    <p class="hero-desc">6+ years of experience making games played by many - from tower defense to hero shooters. Multidisciplinary, collaborative, always building.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Get in Touch →</a>
+      <a href="#professional" class="btn-secondary">See My Work</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="skill-block">
+      <p class="skill-block-label">Skills</p>
+      <div class="skill-pills">
+        <span class="pill o">Game Developer</span>
+        <span class="pill o">Programmer</span>
+        <span class="pill o">Pixel Artist</span>
+        <span class="pill t">Level Design</span>
+        <span class="pill t">Game Design</span>
+        <span class="pill t">Scripting (C#)</span>
+        <span class="pill">UI/UX Design</span>
+        <span class="pill">Pixel Animation</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-block-label">Tools</p>
+      <div class="skill-pills">
+        <span class="pill o">Unity</span>
+        <span class="pill o">Photoshop</span>
+        <span class="pill o">Aseprite</span>
+        <span class="pill t">Visual Studio</span>
+        <span class="pill t">Trello</span>
+        <span class="pill">Git</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PROFESSIONAL PROJECTS
+══════════════════════════════════════ -->
+<section id="professional">
+  <p class="section-label reveal">Professional Projects</p>
+  <h2 class="section-heading reveal">Shipped &amp; Played<br>by <span>REAL Players</span></h2>
+
+  <!-- ── MAKE THEM WALK (now 01) ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">01 / Professional</p>
+      <h3 class="project-title">Make Them Walk</h3>
+      <div class="project-tags">
+        <span class="tag o">Tower Defense</span>
+        <span class="tag t">Pathfinding</span>
+        <span class="tag">Unity</span>
+      </div>
+      <p class="project-desc">Built dynamic enemy routing and balance for a tower defense experience where foes adapt to player-built paths using A* navigation and emergent level behavior.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">A*</div><div class="stat-label">Pathfinding</div></div>
+        <div class="stat-item"><div class="stat-num">Dynamic</div><div class="stat-label">Paths</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Navigation Systems · Enemy AI · Gameplay Balance · Tactical Flow</div>
+      <div class="project-links">
+        <a href="https://store.steampowered.com/app/2511350/Make_Them_Walk/" target="_blank" rel="noopener" class="link-btn primary">View on Steam ↗</a>
+        <a href="https://maybekush.itch.io/make-em-walk" target="_blank" rel="noopener" class="link-btn">Itch.io ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item"><img src="images/MakeEmWalkSS0.jpg" alt="Make Them Walk pathfinding screenshot"></div>
+      <div class="media-item"><img src="images/MakeEmWalkSS1.jpg" alt="Make Them Walk pathfinding screenshot"></div>
+      <div class="media-item"><img src="images/MakeEmWalkSS2.jpg" alt="Make Them Walk tower layout screenshot"></div>
+      <div class="media-item"><img src="images/MakeEmWalkSS3.jpg" alt="Make Them Walk enemy waves screenshot"></div>
+      <div class="media-item"><img src="images/MakeEmWalkSS4.jpg" alt="Make Them Walk upgrade loop screenshot"></div>
+    </div>
+  </div>
+
+  <!-- ── RIVAL RUMBLE (placeholder, 02) ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">02 / Professional</p>
+      <h3 class="project-title">Rival Rumble</h3>
+      <div class="project-tags">
+        <span class="tag o">Puzzle</span>
+        <span class="tag t">Competitive</span>
+        <span class="tag">Unity</span>
+      </div>
+      <p class="project-desc">Rival Rumble is a competitive puzzle game that rewards players with real cryptocurrency. I built the backend and integrations: persistent database management, RESTful web APIs, a Telegram bot bridge, and connections to crypto payment APIs to automate payouts and verify transactions.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">DB</div><div class="stat-label">Persistence</div></div>
+        <div class="stat-item"><div class="stat-num">APIs</div><div class="stat-label">Web & Crypto</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Crypto Rewards · Backend Systems · Telegram Bot · Secure Payments</div>
+      <div class="project-links">
+        <a href="https://t.me/rivalrumbleprelunchfans" target="_blank" rel="noopener" class="link-btn primary">Play on Telegram ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel images-row-4">
+      <div class="media-item"><img src="images/RivalRumble00.png" alt="Rival Rumble cover"></div>
+      <div class="media-item"><img src="images/RivalRumble01.png" alt="Rival Rumble gameplay"></div>
+      <div class="media-item"><img src="images/RivalRumble02.png" alt="Rival Rumble match"></div>
+      <div class="media-item"><img src="images/RivalRumble03.png" alt="Rival Rumble multiplayer"></div>
+      <div class="media-item"><img src="images/RivalRumble04.png" alt="Rival Rumble interface"></div>
+    </div>
+  </div>
+
+  <!-- ── CARROM PLAY (now 03) ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">03 / Professional</p>
+      <h3 class="project-title">Carrom Play</h3>
+      <div class="project-tags">
+        <span class="tag o">Multiplayer</span>
+        <span class="tag t">Unity</span>
+        <span class="tag">PUN2</span>
+      </div>
+      <p class="project-desc">Rebuilt online multiplayer using Photon Unity Networking 2, optimized match flow, and polished gameplay for a real‑time carrom board experience with 2v2 and offline AI modes.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Game Modes</div></div>
+        <div class="stat-item"><div class="stat-num">Online +</div><div class="stat-label">Offline</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Real-time Networking · Match Stability · Multiplayer UX · AI Modes</div>
+      <div class="project-links">
+        <a href="https://www.entwik.com/" target="_blank" rel="noopener" class="link-btn primary">Official Site ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel images-row-4">
+      <div class="media-item"><img src="images/carromCover.jpg" alt="Carrom Play board screenshot"></div>
+      <div class="media-item"><img src="images/carromPlaySS1.webp" alt="Carrom Play board screenshot"></div>
+      <div class="media-item"><img src="images/carromPlaySS2.webp" alt="Carrom Play 2v2 mode screenshot"></div>
+      <div class="media-item"><img src="images/carromPlaySS3.webp" alt="Carrom Play offline AI screenshot"></div>
+      <div class="media-item"><img src="images/carromPlaySS4.webp" alt="Carrom Play match lobby screenshot"></div>
+    </div>
+  </div>
+
+  <!-- ── S.O.S. SQUAD (now 04) ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">04 / Professional</p>
+      <h3 class="project-title">S.O.S. Squad</h3>
+      <div class="project-tags">
+        <span class="tag o">Card Game</span>
+        <span class="tag t">Multiplayer</span>
+        <span class="tag">Unity</span>
+      </div>
+      <p class="project-desc">Created the multiplayer squad trading and win condition systems for a fast-paced online card game, using Photon networking and tight mechanics under a 2-week deadline.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Weeks</div></div>
+        <div class="stat-item"><div class="stat-num">Online</div><div class="stat-label">Multiplayer</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Network Gameplay · Game Mechanics · Card Trading · Rapid Iteration</div>
+      <div class="project-links">
+        <a href="https://play.google.com/store/apps/details?id=com.BeenWalkinCollaborative.S.O.S.Squad&gl=US" target="_blank" rel="noopener" class="link-btn primary">Get on Google Play ↗</a>
+        <a href="https://apps.apple.com/us/app/sos-squad-2020/id1555784069" target="_blank" rel="noopener" class="link-btn">App Store ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel images-row-4">
+      <div class="media-item"><img src="images/sosSquadCover.jpg" alt="S.O.S. Squad card trading screenshot"></div>
+      <div class="media-item"><img src="images/sosSquadSS1.webp" alt="S.O.S. Squad card trading screenshot"></div>
+      <div class="media-item"><img src="images/sosSquadSS2.webp" alt="S.O.S. Squad squad draft screenshot"></div>
+      <div class="media-item"><img src="images/sosSquadSS3.webp" alt="S.O.S. Squad victory condition screenshot"></div>
+      <div class="media-item"><img src="images/sosSquadSS4.webp" alt="S.O.S. Squad match flow screenshot"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+     PERSONAL PROJECTS
+══════════════════════════════════════ -->
+<section id="personal">
+  <p class="section-label reveal">Personal Projects</p>
+  <h2 class="section-heading reveal">Built for the<br><span>Love of It</span></h2>
+
+  <!-- ── PAINT BRAWL (01) ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">01 / Personal</p>
+      <h3 class="project-title">Paint Brawl</h3>
+      <div class="project-tags">
+        <span class="tag o">Arena Shooter</span>
+        <span class="tag t">Solo Project</span>
+        <span class="tag">Unity</span>
+      </div>
+      <p class="project-desc">A satisfying paint-splat arena made solo in 7 days for a Brackeys game jam — ranked #42 in the "Fun" category out of thousands. Features boss encounters, tight controls, and satisfying paint splatter visuals.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">2</div><div class="stat-label">Modes</div></div>
+        <div class="stat-item"><div class="stat-num">Net</div><div class="stat-label">Synced</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Boss Encounters · Paint Splatters · Satisfying Loop · Solo Jam</div>
+      <div class="project-links">
+        <a href="../paintBrawl.html" class="link-btn primary">Open Page ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item"><img src="images/paintBrawlCover.png" alt="Paint Brawl cover"></div>
+      <div class="media-item"><img src="images/PaintBrawlSS1.png" alt="Paint Brawl screenshot 1"></div>
+      <div class="media-item"><img src="images/PaintBrawlSS2.png" alt="Paint Brawl screenshot 2"></div>
+      <div class="media-item"><img src="images/PaintBrawlSS3.png" alt="Paint Brawl screenshot 3"></div>
+      <div class="media-item"><img src="images/PaintBrawlSS4.png" alt="Paint Brawl screenshot 3"></div>
+    </div>
+  </div>
+
+  <!-- ── WHACKY GAME (02) ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">02 / Personal</p>
+      <h3 class="project-title">Whacky Game</h3>
+      <div class="project-tags">
+        <span class="tag o">Multiplayer</span>
+        <span class="tag t">Hero Shooter</span>
+        <span class="tag">Level Design</span>
+        <span class="tag t">Netcode</span>
+        <span class="tag">Animation</span>
+      </div>
+      <p class="project-desc">A realistic-looking hero shooter PvP where players pick whacky characters with unexpected moves (for example, tanks that fight using melee). Built robust multiplayer systems, PvP balancing, and animation-driven combat to support fast, emergent battles.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">Net</div><div class="stat-label">Multiplayer</div></div>
+        <div class="stat-item"><div class="stat-num">Anim</div><div class="stat-label">Driven</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> PvP Balance · Robust Netcode · Character Moves · Melee-Tank Mechanics</div>
+      <div class="project-links">
+        <a href="#" class="link-btn primary">Demo Coming Soon ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item"><img src="images/WhackyGame01.png" alt="Whacky Game screenshot"></div>
+      <div class="media-item"><img src="images/WhackyGame02.png" alt="Whacky Game gameplay"></div>
+      <div class="media-item"><img src="images/WhackyGame03.png" alt="Whacky Game multiplayer"></div>
+      <div class="media-item"><img src="images/WhackyGame04.png" alt="Whacky Game characters"></div>
+      <div class="media-item"><img src="images/WhackyGame05.png" alt="Whacky Game characters"></div>
+    </div>
+  </div>
+
+  <!-- ── BMB (03) ── -->
+  <div class="project-entry reveal">
+    <div class="project-text-panel">
+      <p class="project-num">03 / Personal</p>
+      <h3 class="project-title">BMB</h3>
+      <div class="project-tags">
+        <span class="tag o">Experimental</span>
+        <span class="tag t">Prototype</span>
+        <span class="tag">Unity</span>
+      </div>
+      <p class="project-desc">A small prototype exploring arcade mechanics and rapid prototyping workflows. Includes core loop and basic systems implemented as a playable build.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="stat-num">Proto</div><div class="stat-label">Build</div></div>
+        <div class="stat-item"><div class="stat-num">Solo</div><div class="stat-label">Dev</div></div>
+      </div>
+      <div class="highlights-inline"><strong>↳</strong> Rapid Prototyping · Core Loop · Playable Build</div>
+      <div class="project-links">
+        <a href="../bmb.html" class="link-btn primary">Open Page ↗</a>
+      </div>
+    </div>
+    <div class="project-images-panel">
+      <div class="media-item"><img src="images/bmbCover.png" alt="BMB cover"></div>
+      <div class="media-item"><img src="images/bmbSS1.jpg" alt="BMB screenshot 1"></div>
+      <div class="media-item"><img src="images/bmbSS2.jpg" alt="BMB screenshot 2"></div>
+      <div class="media-item"><img src="images/bmbSS3.jpg" alt="BMB screenshot 3"></div>
+      <div class="media-item"><img src="images/bmbSS4.jpg" alt="BMB screenshot 4"></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left">
+    <p class="section-label reveal">About Me</p>
+    <h2 class="section-heading reveal">Designer.<br>Developer.<br><span>Do-er.</span></h2>
+    <p class="about-text reveal">I'm MaybeKush - a game developer, programmer, and pixel artist who builds playable experiences with polished visuals, tight systems, and game mechanics that DANCE with each other. I ship prototypes and finished work using Unity, Photoshop, Aseprite, and Visual Studio while keeping projects organized in Trello.</p>
+    <p class="about-text reveal">From pixelated indie worlds to code driven tools and gameplay loops, I focus on making games that feels handcrafted and plays clean AND SO FUN THAT IT'S ADDICTING. Based in India.</p>
+  </div>
+  <div class="about-right">
+    <div>
+      <p class="tool-group-label">Engines &amp; Tools</p>
+      <ul class="tool-list">
+        <li><span class="tool-dot"></span>Unity</li>
+        <li><span class="tool-dot"></span>Aseprite</li>
+      </ul>
+    </div>
+    <div>
+      <p class="tool-group-label">Production Tools</p>
+      <ul class="tool-list">
+        <li><span class="tool-dot"></span>Photoshop</li>
+        <li><span class="tool-dot"></span>Visual Studio</li>
+        <li><span class="tool-dot"></span>Audacity</li>
+        <li><span class="tool-dot"></span>Trello</li>
+        <li><span class="tool-dot"></span>Git</li>
+      </ul>
+    </div>
+    <div>
+      <p class="tool-group-label">Additional Skills</p>
+      <ul class="tool-list">
+        <li><span class="tool-dot"></span>Playtesting &amp; QA Leadership</li>
+        <li><span class="tool-dot"></span>Level Design</li>
+        <li><span class="tool-dot"></span>Multiplayer Networking</li>
+        <li><span class="tool-dot"></span>VR Development</li>
+        <li><span class="tool-dot"></span>R&D Mechanics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-left">
+    <p class="section-label reveal">Contact</p>
+    <h2 class="section-heading reveal">Let's Make<br><span>Something.</span></h2>
+    <p class="project-desc reveal" style="color:var(--mid);font-weight:300;max-width:36ch;line-height:1.75;">Have a project, a role, or just want to talk games? Reach out - I respond fast.</p>
+  </div>
+  <div class="contact-right">
+    <a href="mailto:kushagrapratap4943@gmail.com" class="contact-card reveal">
+      <p class="contact-card-label">Email</p>
+      <p class="contact-card-value">kushagrapratap4943@gmail.com <span>↗</span></p>
+    </a>
+    <a href="https://maybekush.itch.io/" target="_blank" rel="noopener" class="contact-card reveal">
+      <p class="contact-card-label">Itch.io</p>
+      <p class="contact-card-value">maybekush.itch.io <span>↗</span></p>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Maybe<span>.</span>Kush</span>
+  <span class="footer-copy">Game Developer &amp; Pixel Artist · India · 2026</span>
+</footer>
+
+<!-- CURSOR OVERLAY (fixed, pointer-events:none — zero layout impact) -->
+<div id="img-overlay"><img id="img-overlay-img" src="" alt=""></div>
+
+<script>
+/* ── Scroll reveal ── */
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => obs.observe(el));
+
+/* ── Image overlay: centered on hovered image + 5% cursor parallax ── */
+const overlay    = document.getElementById('img-overlay');
+const overlayImg = document.getElementById('img-overlay-img');
+
+let cursorX    = 0, cursorY    = 0;   // live cursor position
+let activeItem = null;                 // currently hovered .media-item
+let itemCX     = 0, itemCY     = 0;   // image center in viewport coords
+
+/* Compute overlay position: image center + 5% of cursor offset from that center */
+function positionOverlay() {
+  const dx = cursorX - itemCX;
+  const dy = cursorY - itemCY;
+  overlay.style.left = (itemCX + dx * 0.05) + 'px';
+  overlay.style.top  = (itemCY + dy * 0.05) + 'px';
+}
+
+/* Recalculate image center (needed when page scrolls while hovering) */
+function refreshCenter() {
+  if (!activeItem) return;
+  const r = activeItem.getBoundingClientRect();
+  itemCX = r.left + r.width  / 2;
+  itemCY = r.top  + r.height / 2;
+}
+
+document.addEventListener('mousemove', (e) => {
+  cursorX = e.clientX;
+  cursorY = e.clientY;
+  if (activeItem) positionOverlay();
+});
+
+window.addEventListener('scroll', () => {
+  refreshCenter();
+  if (activeItem) positionOverlay();
+}, { passive: true });
+
+document.querySelectorAll('.media-item').forEach(item => {
+  const img = item.querySelector('img');
+  if (!img) return;   // skip iframe / placeholder cells
+
+  item.addEventListener('mouseenter', () => {
+    activeItem = item;
+    refreshCenter();
+
+    overlayImg.src = img.src;
+    overlayImg.alt = img.alt;
+
+    // 1. Snap to image center instantly — disable position transition so
+    //    the overlay doesn't slide in from wherever it last was.
+    overlay.style.transition = 'opacity 0.15s ease, visibility 0.15s ease';
+    overlay.style.left = itemCX + 'px';
+    overlay.style.top  = itemCY + 'px';
+
+    // 2. One frame later: restore full transitions (including left/top for parallax)
+    //    and make it visible.
+    requestAnimationFrame(() => {
+      overlay.style.transition = '';   // falls back to the CSS rule
+      overlay.classList.add('show');
+    });
+  });
+
+  item.addEventListener('mouseleave', () => {
+    activeItem = null;
+    overlay.classList.remove('show');
+  });
+});
+</script>
 </body>
 </html>
