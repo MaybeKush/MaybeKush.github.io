@@ -7,70 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --ink: #111010;
-  --paper: #faf8f5;
-  --paper2: #f0ede7;
-  --orange: #e8620a;
-  --neutral: #84b6a4;
-  --orange-light: #ff8533;
-  --orange-dim: rgba(232,98,10,0.12);
-  --teal: #0aada8;
-  --teal-light: #12cfc9;
-  --teal-dim: rgba(10,173,168,0.12);
-  --mid: #6a6560;
-  --border: rgba(17,16,16,0.1);
-  --font-head: 'Barlow Condensed', sans-serif;
-  --font-body: 'Barlow', sans-serif;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  background: var(--paper);
-  color: var(--ink);
-  font-size: 16px;
-  line-height: 1.65;
-  overflow-x: hidden;
-}
-
-/* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 3rem;
-  background: rgba(250,248,245,0.92);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-}
-.nav-logo {
-  font-family: var(--font-head);
-  font-weight: 900;
-  font-size: 1.35rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-}
-.nav-logo span { color: var(--orange); }
-.nav-links { display: flex; gap: 2.2rem; list-style: none; }
-.nav-links a {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--mid);
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--orange); }
-.nav-links a.active { color: var(--orange); }
-
-/* ── HERO ── */
+/* ── PAGE HERO ── */
 .page-hero {
   padding-top: 5.5rem;
   padding-bottom: 3rem;
@@ -97,21 +36,6 @@ nav {
   color: rgba(255,255,255,0.025);
   pointer-events: none;
   white-space: nowrap;
-}
-.hero-eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--teal);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.hero-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 24px; height: 2px;
-  background: var(--teal);
 }
 .page-title {
   font-family: var(--font-head);
@@ -194,31 +118,7 @@ nav {
 .gallery-section {
   padding: 3.5rem 3rem;
 }
-.section-label {
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--teal);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  display: flex; align-items: center; gap: 0.75rem;
-}
-.section-label::before {
-  content: '';
-  display: inline-block;
-  width: 20px; height: 2px;
-  background: var(--teal);
-}
-.section-heading {
-  font-family: var(--font-head);
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 0.95;
-  margin-bottom: 2.5rem;
-}
-.section-heading span { color: var(--orange); }
+.section-heading { font-size: clamp(2.2rem, 4vw, 3.5rem); margin-bottom: 2.5rem; }
 
 /* ── PIXEL ART GRID ── */
 .pixel-grid {
@@ -439,28 +339,6 @@ nav {
   letter-spacing: 0.03em;
 }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--ink);
-  padding: 2rem 3rem;
-  display: flex; align-items: center; justify-content: space-between;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-.footer-logo {
-  font-family: var(--font-head);
-  font-weight: 900;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--paper);
-}
-.footer-logo span { color: var(--orange); }
-.footer-copy { font-size: 0.75rem; color: rgba(250,248,245,0.3); }
-
-/* ── REVEAL ── */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.reveal.in { opacity: 1; transform: none; }
-
 /* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   .pixel-grid { grid-template-columns: repeat(5, 1fr); }
@@ -474,8 +352,6 @@ footer {
   .pixel-item.px-6x2 { grid-column: span 4; }
 }
 @media (max-width: 700px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { gap: 1.3rem; }
   .page-hero { grid-template-columns: 1fr; padding: 5rem 1.5rem 2.5rem; }
   .hero-stats { flex-direction: row; }
   .filter-bar { padding: 1rem 1.5rem; }
@@ -502,6 +378,14 @@ footer {
   .pixel-item.px-6x1,
   .pixel-item.px-6x2 { grid-column: span 2; }
 }
+
+@media (max-width: 640px) {
+  /* Page hero needs extra top padding to clear the two-row nav */
+  .page-hero { padding-top: 7.5rem; }
+}
+
+/* pixel-art page footer has a top border */
+footer { border-top: 1px solid rgba(255,255,255,0.06); }
 </style>
 </head>
 <body>
