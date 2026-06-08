@@ -359,6 +359,16 @@ section { padding: 5rem 3rem; }
   height: 150px;
 }
 
+/* ── REVERSED ENTRY: images left, text right ── */
+.project-entry.reversed .project-text-panel {
+  order: 2;
+  padding-right: 0;
+  padding-left: 2.5rem;
+}
+.project-entry.reversed .project-images-panel {
+  order: 1;
+}
+
 .media-item {
   position: relative;
   background: var(--ink);
@@ -550,6 +560,8 @@ footer {
   .hero-left { padding: 3.5rem 1.5rem; }
   .project-entry { grid-template-columns: 1fr; }
   .project-text-panel { padding-right: 0; padding-bottom: 1.25rem; }
+  .project-entry.reversed .project-text-panel { order: unset; padding-left: 0; padding-bottom: 1.25rem; }
+  .project-entry.reversed .project-images-panel { order: unset; }
   .project-images-panel { grid-template-columns: 1fr 1fr; }
   #about, #contact { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
   .about-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem; }
@@ -650,7 +662,7 @@ footer {
   </div>
 
   <!-- ── RIVAL RUMBLE (placeholder, 02) ── -->
-  <div class="project-entry reveal">
+  <div class="project-entry reveal reversed">
     <div class="project-text-panel">
       <p class="project-num">02 / Professional</p>
       <h3 class="project-title">Rival Rumble</h3>
@@ -708,7 +720,7 @@ footer {
   </div>
 
   <!-- ── S.O.S. SQUAD (now 04) ── -->
-  <div class="project-entry reveal">
+  <div class="project-entry reveal reversed">
     <div class="project-text-panel">
       <p class="project-num">04 / Professional</p>
       <h3 class="project-title">S.O.S. Squad</h3>
@@ -776,7 +788,7 @@ footer {
   </div>
 
   <!-- ── WHACKY GAME (02) ── -->
-  <div class="project-entry reveal">
+  <div class="project-entry reveal reversed">
     <div class="project-text-panel">
       <p class="project-num">02 / Personal</p>
       <h3 class="project-title">Whacky Game</h3>
