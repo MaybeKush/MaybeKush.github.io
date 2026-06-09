@@ -134,8 +134,8 @@
 .pixel-grid .px-large { grid-column: span 2; grid-row: span 2; }
 .pixel-grid .px-2x1 { grid-column: span 2; }
 /* Flexible named spans — add more as needed */
-.pixel-grid .px-1x1 { /* default, no extra spans */ }
 .pixel-grid .px-2x2 { grid-column: span 2; grid-row: span 2; }
+.pixel-grid .px-2x3 { grid-column: span 2; grid-row: span 3; }
 .pixel-grid .px-3x2 { grid-column: span 3; grid-row: span 2; }
 .pixel-grid .px-3x1 { grid-column: span 3; }
 .pixel-grid .px-4x1 { grid-column: span 4; }
@@ -151,6 +151,7 @@
   background: var(--paper2);
   overflow: hidden;
   cursor: pointer;
+  align-items: center;
   aspect-ratio: 1 / 1;   /* default: one grid cell = square */
 }
 /* Column-only spans: aspect ratio scales with width */
@@ -163,6 +164,7 @@
 .pixel-item.px-tall  { aspect-ratio: auto; }
 .pixel-item.px-large { aspect-ratio: auto; }
 .pixel-item.px-2x2   { aspect-ratio: auto; }
+.pixel-item.px-2x3   { aspect-ratio: auto; }
 .pixel-item.px-3x2   { aspect-ratio: auto; }
 .pixel-item.px-4x2   { aspect-ratio: auto; }
 .pixel-item.px-5x2   { aspect-ratio: auto; }
@@ -630,19 +632,21 @@ footer { border-top: 1px solid rgba(255,255,255,0.06); }
       </div>
     </div>
 
-    <!-- 11: Old man -->
-    <div class="pixel-item px-theme reveal" data-category="character">
-      <img src="images/pixelart/Old man 16x16.png" alt="Old man">
+    
+
+    <!-- 6: Technoblade -->
+    <div class="pixel-item px-2x3 px-theme reveal" style="background: var(--neutral);" data-category="environment">
+      <img src="images/pixelart/Wplace Technoblade 162x283.png" alt="Technoblade">
       <div class="px-overlay">
-        <span class="px-tag">Character</span>
-        <p class="px-title">Old man</p>
+        <span class="px-tag">Environment</span>
+        <p class="px-title">Technoblade Fanart</p>
         <div class="px-meta">
           <div class="px-stat">
-            <span class="px-stat-value">10m</span>
-            <span class="px-stat-label">Time Taken</span>
+            <span class="px-stat-value">Wplace</span>
+            <span class="px-stat-label">Canvas</span>
           </div>
           <div class="px-stat">
-            <span class="px-stat-value">16×16</span>
+            <span class="px-stat-value">162×283</span>
             <span class="px-stat-label">Resolution</span>
           </div>
         </div>
@@ -667,6 +671,8 @@ footer { border-top: 1px solid rgba(255,255,255,0.06); }
         </div>
       </div>
     </div>
+
+    
 
     <!-- 5: Dog -->
     <div class="pixel-item px-tall px-theme reveal" data-category="animation">
@@ -732,6 +738,25 @@ footer { border-top: 1px solid rgba(255,255,255,0.06); }
       </div>
     </div>
 
+    <!-- 11: Old man -->
+    <div class="pixel-item px-theme reveal" data-category="character">
+      <img src="images/pixelart/Old man 16x16.png" alt="Old man">
+      <div class="px-overlay">
+        <span class="px-tag">Character</span>
+        <p class="px-title">Old man</p>
+        <div class="px-meta">
+          <div class="px-stat">
+            <span class="px-stat-value">10m</span>
+            <span class="px-stat-label">Time Taken</span>
+          </div>
+          <div class="px-stat">
+            <span class="px-stat-value">16×16</span>
+            <span class="px-stat-label">Resolution</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 12: Cracked Egg -->
     <div class="pixel-item px-theme reveal" data-category="item">
       <img src="images/pixelart/egg%20cracked%2032x32.png" alt="Cracked Egg">
@@ -768,7 +793,7 @@ footer { border-top: 1px solid rgba(255,255,255,0.06); }
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">Maybe<span>.</span>Kush</span>
-  <span class="footer-copy">Game &amp; Level Designer · Austin, TX · 2026</span>
+  <span class="footer-copy">Game Developer &amp; Pixel Artist · India</span>
 </footer>
 
 <script>
