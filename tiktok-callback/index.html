@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>TikTok login</title>
+</head>
+<body style="font-family: sans-serif; padding: 24px">
+<p id="msg">Sending the login back to the app...</p>
+<script>
+  // Forwards TikTok's ?code=...&state=... to the post.py listener on this PC
+  if (location.search) location.replace("http://localhost:8765/" + location.search);
+  else document.getElementById("msg").textContent = "Nothing to do here.";
+</script>
+</body>
+</html>
